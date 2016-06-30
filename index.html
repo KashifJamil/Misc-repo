@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app="angularjs-starter">
+  
+  <head lang="en">
+    <meta charset="utf-8">
+    <title>Custom Plunker</title>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script>
+      document.write('<base href="' + document.location + '" />');
+    </script>
+    <script src="app.js"></script>
+  </head>
+  
+  <body ng-controller="MainCtrl">
+    <a ng-click="addNew()">+ add new</a>
+    <form name="mainForm" ng-submit="submitAll()">
+      <ul>
+        <li ng-repeat="item in items" ng-form="subForm">          
+          <input type="text" required name="name" ng-model="item.name"/>
+          <span ng-show="subForm.name.$error.required">required</span>
+          <button type="button" ng-disabled="subForm.$invalid" ng-click="submitOne(item)">Submit One</button>
+        </li>
+      </ul>
+      <button type="submit" ng-disabled="mainForm.$invalid">Submit All</button>
+    </form>
+    <hr/>
+    <div ng-show="lastSubmit">Last Submit:</div>
+    <pre>{{lastSubmit | json}}</pre>
+  </body>
+
+</html>
